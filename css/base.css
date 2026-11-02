@@ -1,0 +1,149 @@
+/* Week 8: body text is at least 16px (1rem); all text colours are at least 4.5:1 on their background */
+:root {
+  --ink: #1d2733;     /* 15.1:1 on white */
+  --ink-2: #4a5866;   /*  7.3:1 on white */
+  --ink-3: #5f6b77;   /*  5.5:1 on white, 5.0:1 on --paper-2 */
+  --paper: #ffffff;
+  --paper-2: #f4f6f8;
+  --rule: #c9d1d9;
+  --accent: #5b3f99;  /*  8.0:1 on white */
+  --focus: #1d4ed8;
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 100%; }   /* respects the user's browser font-size setting */
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Skip link (WCAG 2.4.1 Bypass Blocks): first thing a keyboard user reaches */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: #ffffff;
+  border-radius: 6px;
+}
+.skip-link:focus { top: 0.75rem; }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: 16px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.5rem;
+  padding-block: 0.85rem;
+}
+
+.site-header .brand { color: var(--ink); font-weight: 700; text-decoration: none; margin-right: auto; }
+.site-header nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+.site-header nav a { color: var(--ink-2); text-decoration: none; }
+.site-header nav a:hover { color: var(--accent); text-decoration: underline; }
+.site-header nav a[aria-current="page"] { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+
+main.wrap { padding-block: 1.5rem 3rem; }
+
+h1 { font-size: clamp(1.7rem, 3vw, 2.2rem); line-height: 1.2; margin: 0.4rem 0 0.75rem; }
+h2 { font-size: 1.25rem; margin: 2rem 0 0.5rem; }
+h3 { font-size: 1.1rem; margin: 0 0 0.25rem; }
+
+p { max-width: 72ch; }
+.lede { color: var(--ink-2); font-size: 1.1rem; }
+
+/* Instructions (Week 8: tell people how to use the chart) */
+.instructions {
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border-left: 4px solid var(--accent);
+  padding: 0.5rem 0.9rem;
+  margin: 0.75rem 0;
+  max-width: none;
+}
+
+.source { color: var(--ink-3); margin-top: 1rem; }
+.source a, main a { color: var(--accent); }
+
+/* Visible keyboard focus everywhere (WCAG 2.4.7) */
+a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  font-size: 1rem;
+  min-height: 40px;
+  padding: 0.4rem 1rem;
+  border: 1px solid #8a95a1;   /* 3:1 boundary */
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--ink); }
+button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #ffffff; }
+
+select {
+  font: inherit;
+  font-size: 1rem;
+  min-height: 40px;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #8a95a1;
+  border-radius: 6px;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+details { margin-top: 1.5rem; }
+summary { cursor: pointer; color: var(--ink); font-weight: 600; }
+
+table.data-table { border-collapse: collapse; margin-top: 0.75rem; font-variant-numeric: tabular-nums; }
+table.data-table caption { text-align: left; color: var(--ink-2); padding-bottom: 0.4rem; }
+table.data-table th, table.data-table td { padding: 0.3rem 0.9rem; border-bottom: 1px solid var(--rule); text-align: left; }
+table.data-table .num { text-align: right; }
+
+/* Visually hidden but read by screen readers (Week 8 .sr-only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+footer.site-footer {
+  border-top: 1px solid var(--rule);
+  color: var(--ink-3);
+  padding-block: 1rem;
+}
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

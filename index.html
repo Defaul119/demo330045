@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prison populations of developed countries · Incarceration in developed countries</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/visualisation.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Incarceration in developed countries</a>
+      <nav aria-label="Pages">
+        <ul>
+          <li><a href="index.html" aria-current="page">Prison populations</a></li>
+          <li><a href="states.html">U.S. states vs countries</a></li>
+          <li><a href="women.html">Women in U.S. jails</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <h1>The U.S. holds 70% of the developed world's prisoners</h1>
+    <p class="lede">
+      We looked at 40 rich, developed countries. The United States has 31% of their people.
+      But it has 1.86 million of their 2.65 million prisoners. That is more than all the other 39 countries put together.
+    </p>
+
+    <p class="instructions" id="map-instructions">
+      <strong>How to read it:</strong> each purple circle is a country. The bigger the circle's area, the more people it has in prison.
+      <strong>How to use it:</strong> hover over a circle, or press Tab to move to it, to see exact numbers. Use the arrow keys to go to the next circle.
+      Scroll or use the + and &minus; buttons to zoom, and drag to move the map.
+    </p>
+
+    <div class="map-layout">
+      <section aria-labelledby="map-heading">
+        <h2 id="map-heading" class="sr-only">Map of prison populations</h2>
+        <div class="control-row" id="zoom-presets" role="group" aria-label="Zoom the map to a region">
+          <span class="control-label" aria-hidden="true">Zoom to:</span>
+        </div>
+        <div class="map-panel">
+          <div id="bubble-map" class="responsive-svg-container"></div>
+          <div class="zoom-controls" role="group" aria-label="Map zoom">
+            <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+            <button id="zoom-out" type="button" aria-label="Zoom out">&minus;</button>
+            <button id="zoom-reset" type="button" aria-label="Reset zoom to the whole world">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="bar-panel" aria-labelledby="bar-heading">
+        <h2 id="bar-heading">Number of people in prison</h2>
+        <p>The U.S. on its own, compared with all the other countries added together.</p>
+        <div id="prison-bar" class="responsive-svg-container"></div>
+        <p class="ratio" id="bar-ratio"></p>
+      </section>
+    </div>
+
+    <details>
+      <summary>Show the data as a table</summary>
+      <table class="data-table" id="map-table">
+        <caption>People in prison in 40 developed countries, largest first</caption>
+        <thead>
+          <tr>
+            <th scope="col">Country</th>
+            <th scope="col" class="num">People in prison (estimate)</th>
+            <th scope="col" class="num">In prison per 100,000 people</th>
+            <th scope="col" class="num">Year</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </details>
+
+    <h2>About the data</h2>
+    <p class="source">
+      <strong>Countries:</strong> the 40 countries the IMF calls "advanced economies". We left out Puerto Rico because it is part of the U.S.
+    </p>
+    <p class="source">
+      <strong>Prison rates:</strong> World Prison Brief, through
+      <a href="https://ourworldindata.org/grapher/prison-population-rate">Our World in Data</a>. We used the newest year for each country (2023 to 2026).
+    </p>
+    <p class="source">
+      <strong>Number of people in prison:</strong> our estimate. It is the rate &times; the population &divide; 100,000.
+      Population is from <a href="https://ourworldindata.org/grapher/population">Our World in Data</a> (2023 if the rate is newer).
+    </p>
+    <p class="source">
+      <strong>Map:</strong> Natural Earth, through <a href="https://github.com/topojson/world-atlas">world-atlas</a>.
+      Some places are too small to show as land (Hong Kong, Macao, Singapore, Malta, Andorra and San Marino), but they still have a circle.
+      The smallest circles are drawn a little bigger than their true size so you can hover over them.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">COS30045 Data Visualisation · Demo 3 · Swinburne University of Technology</div>
+  </footer>
+
+  <!-- Week 8: screen readers hear tooltip text from this live region -->
+  <div id="tooltip-announcer" class="sr-only" aria-live="polite"></div>
+
+  <script src="js/vendor/d3.v7.min.js"></script>
+  <script src="js/vendor/topojson-client.min.js"></script>
+  <script src="js/shared-constants.js"></script>
+  <script src="js/resize.js"></script>
+  <script src="js/tooltip.js"></script>
+  <script src="js/bubble-map.js"></script>
+  <script src="js/prison-bar.js"></script>
+  <script src="js/load-data-map.js"></script>
+</body>
+</html>

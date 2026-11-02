@@ -1,0 +1,165 @@
+/* Chart text sizes use calc(… * var(--k)). --k is set by js/resize.js (Week 8 rule of three)
+   so that text is never shown smaller than its size here, even when the SVG is shrunk to fit. */
+
+.responsive-svg-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Keyboard focus on SVG marks */
+svg [tabindex]:focus { outline: none; }
+svg [tabindex]:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+
+/* ---------- Shared: SVG tooltip (Week 6 pattern) ---------- */
+.tooltip { pointer-events: none; }
+.tooltip rect { fill: #1d2733; }
+.tooltip text { fill: #ffffff; font-size: calc(14px * var(--k, 1)); }
+.tooltip .tooltip-title { font-weight: 700; font-size: calc(15px * var(--k, 1)); }
+
+/* ---------- Page 1: bubble map + bar chart ---------- */
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .map-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+.control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+.control-row .control-label { color: var(--ink-2); margin-right: 0.25rem; }
+
+.map-panel { position: relative; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+
+.zoom-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.zoom-controls button {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.6rem;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+#bubble-map svg { cursor: grab; }
+#bubble-map svg:active { cursor: grabbing; }
+
+.land { fill: #e4e2dd; stroke: #ffffff; }
+.land.developed { fill: #c9c3b8; }
+.sphere { fill: #ffffff; }
+
+/* fill 80% opaque + dark outline: the bubble edge is 11:1 against the land (shapes need 3:1) */
+.bubble { fill: #6a51a3; fill-opacity: 0.8; stroke: #2e1a5e; cursor: pointer; }
+.bubble:hover, .bubble:focus, .bubble.highlight { fill: #3f2a75; fill-opacity: 0.95; }
+
+/* --zoom is set on the svg while zooming so labels keep their on-screen size */
+.bubble-label {
+  fill: #1d2733;
+  font-size: calc(13px * var(--k, 1) / var(--zoom, 1));
+  stroke-width: calc(3px * var(--k, 1) / var(--zoom, 1));
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-linejoin: round;
+}
+
+.bubble-label.us { font-size: calc(17px * var(--k, 1) / var(--zoom, 1)); font-weight: 700; fill: #ffffff; stroke: none; }
+
+.bar-panel p { color: var(--ink-2); margin: 0 0 0.5rem; }
+.bar-panel .ratio { color: var(--ink); font-weight: 600; margin-top: 0.75rem; }
+
+.bar { cursor: pointer; }
+.bar.us { fill: #6a51a3; }        /* 6.3:1 on white */
+.bar.others { fill: #8471b8; }    /* 4.2:1 on white */
+.bar:hover, .bar:focus, .bar.highlight { fill: #2e1a5e; }
+
+.bar-label { font-size: calc(14px * var(--k, 1)); font-weight: 600; fill: #1d2733; }
+.bar-value { font-size: calc(14px * var(--k, 1)); font-weight: 700; fill: #1d2733; font-variant-numeric: tabular-nums; }
+.bar-value.inside { fill: #ffffff; pointer-events: none; }
+
+/* ---------- Page 2: ranked bar chart ---------- */
+.ranking-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; color: var(--ink); list-style: none; margin: 0; padding: 0; }
+.legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+.legend .swatch { display: inline-block; width: 16px; height: 16px; border-radius: 3px; }
+.legend .state .swatch { background: #8a8f98; }
+.legend .country .swatch { background: #c2620a; }
+.legend .us .swatch { background: #6a51a3; }
+.legend .country, .legend .us { font-weight: 700; }
+
+#ranking-chart { max-width: 980px; }
+
+.rank-bar.state { fill: #8a8f98; }    /* 3.3:1 on white */
+.rank-bar.country { fill: #c2620a; }  /* 4.2:1 on white */
+.rank-bar.us { fill: #6a51a3; }       /* 6.3:1 on white */
+.rank-row { cursor: pointer; }
+.rank-row:hover .rank-bar, .rank-row:focus .rank-bar, .rank-row.highlight .rank-bar { fill: #1d2733; }
+
+.rank-name { font-size: calc(13px * var(--k, 1)); fill: #4a5866; }
+.rank-name.country, .rank-name.us { font-weight: 700; fill: #1d2733; }
+.rank-value { font-size: calc(12px * var(--k, 1)); fill: #4a5866; font-variant-numeric: tabular-nums; }
+.rank-row.highlight .rank-name, .rank-row.highlight .rank-value { fill: #1d2733; font-weight: 700; }
+
+.axis text { font-size: calc(12px * var(--k, 1)); fill: #4a5866; }
+.axis path { display: none; }
+.axis line { stroke: #e3e7eb; }
+.axis-label { font-size: calc(13px * var(--k, 1)); fill: #4a5866; }
+
+.show-all-wrap { display: flex; justify-content: center; max-width: 980px; margin-top: 0.5rem; }
+
+#state-summary { min-height: 1.6em; color: var(--ink); font-weight: 600; }
+
+/* ---------- Page 3: half sunburst ---------- */
+.sunburst-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin: 1rem 0 0.5rem; }
+.sunburst-controls .legend { margin-left: auto; }
+.legend .notconv .swatch { background: #7a3703; }
+.legend .conv .swatch { background: #2c4565; }
+.legend .agency .swatch { background: #525b65; }
+
+.breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
+.breadcrumb li + li::before { content: "›"; color: var(--ink-3); margin: 0 0.35rem; }
+.breadcrumb button { min-height: 36px; padding: 0.2rem 0.75rem; }
+.breadcrumb [aria-current="true"] { font-weight: 700; padding: 0.2rem 0.4rem; }
+
+#sunburst { max-width: 1000px; margin: 0 auto; }
+
+.arc { stroke: #ffffff; cursor: pointer; }
+.arc.leaf { cursor: default; }
+.arc.dim { opacity: 0.35; }
+.arc:hover, .arc:focus { stroke: #1d2733; stroke-width: 2; }
+
+.arc-label {
+  fill: #ffffff;
+  pointer-events: none;
+  font-size: calc(13px * var(--k, 1));
+}
+.arc-label .value { font-weight: 400; }
+.arc-label.big { font-size: calc(26px * var(--k, 1)); font-weight: 700; }
+.arc-label.big .value { font-size: calc(22px * var(--k, 1)); }
+.arc-label.mid { font-size: calc(14px * var(--k, 1)); font-weight: 700; }
+
+#sunburst-table th.depth-1 { padding-left: 2rem; }
+#sunburst-table th.depth-2 { padding-left: 3.25rem; }
+#sunburst-table th.depth-3 { padding-left: 4.5rem; }
+#sunburst-table th.depth-4 { padding-left: 5.75rem; font-weight: 400; }
+
+#prison-bar { max-width: 360px; }

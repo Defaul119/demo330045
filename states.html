@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>If every U.S. state were a country · Incarceration in developed countries</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/visualisation.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Incarceration in developed countries</a>
+      <nav aria-label="Pages">
+        <ul>
+          <li><a href="index.html">Prison populations</a></li>
+          <li><a href="states.html" aria-current="page">U.S. states vs countries</a></li>
+          <li><a href="women.html">Women in U.S. jails</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <h1>If every U.S. state were a country</h1>
+    <p class="lede">
+      Every U.S. state locks up more of its people than almost every other developed country.
+      Only Taiwan is higher than a few states. Massachusetts has the lowest rate of any state: 241 people per 100,000.
+      That is still 1.7 times the United Kingdom's rate, and 7 times Japan's.
+    </p>
+
+    <p class="instructions">
+      <strong>How to read it:</strong> longer bars mean more people locked up for every 100,000 residents.
+      Grey bars are U.S. states. Orange bars, with <strong>bold names</strong>, are other developed countries. The purple bar is the whole U.S.
+      <strong>How to use it:</strong> hover over a bar to see details. Or press Tab to reach the chart, then use the up and down arrow keys.
+      Pick a state from the list to find it.
+    </p>
+
+    <div class="ranking-controls">
+      <ul class="legend" aria-label="Legend">
+        <li class="state"><span class="swatch" aria-hidden="true"></span>U.S. state</li>
+        <li class="country"><span class="swatch" aria-hidden="true"></span>Developed country</li>
+        <li class="us"><span class="swatch" aria-hidden="true"></span>Whole United States</li>
+      </ul>
+      <label for="state-select">Find a state:</label>
+      <select id="state-select">
+        <option value="">Choose a state</option>
+      </select>
+    </div>
+    <p id="state-summary" aria-live="polite"></p>
+
+    <div id="ranking-chart" class="responsive-svg-container"></div>
+    <div class="show-all-wrap">
+      <button id="show-all" type="button" aria-controls="ranking-chart"></button>
+    </div>
+
+    <details>
+      <summary>Show the data as a table</summary>
+      <table class="data-table" id="ranking-table">
+        <caption>U.S. states and developed countries, highest rate first</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="num">Rank</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col" class="num">Locked up per 100,000</th>
+            <th scope="col" class="num">Year</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </details>
+
+    <h2>About the data</h2>
+    <p class="source">
+      <strong>U.S. states and the whole U.S.:</strong>
+      <a href="https://www.prisonpolicy.org/global/2024.html">Prison Policy Initiative, <cite>States of Incarceration: The Global Context 2024</cite></a>.
+      It counts everyone locked up: in state prisons, local jails, federal prisons, youth centres, immigration detention and more.
+    </p>
+    <p class="source">
+      <strong>Other countries:</strong> the IMF's "advanced economies". Their rates come from the World Prison Brief, through
+      <a href="https://ourworldindata.org/grapher/prison-population-rate">Our World in Data</a>. We used the newest year for each country (2023 to 2026).
+    </p>
+    <p class="source">
+      <strong>Why the U.S. is 614 here but 542 on the map page:</strong> the World Prison Brief gives the U.S. 542 (2023).
+      This page uses the Prison Policy Initiative's 614, so the whole U.S. is counted the same way as its states.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">COS30045 Data Visualisation · Demo 3 · Swinburne University of Technology</div>
+  </footer>
+
+  <div id="tooltip-announcer" class="sr-only" aria-live="polite"></div>
+
+  <script src="js/vendor/d3.v7.min.js"></script>
+  <script src="js/shared-constants.js"></script>
+  <script src="js/resize.js"></script>
+  <script src="js/tooltip.js"></script>
+  <script src="js/state-ranking.js"></script>
+  <script src="js/load-data-states.js"></script>
+</body>
+</html>

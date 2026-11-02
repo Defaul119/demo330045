@@ -1,0 +1,72 @@
+id,parent,name,value,branch
+jails,,In jails,,root
+local,jails,Held for local authorities,,local
+other,jails,Held for other agencies,,agency
+nc,local,Not convicted,,notconv
+cv,local,Convicted,,conv
+nc-violent,nc,Violent,,notconv
+nc-violent-murder,nc-violent,Murder,1400,notconv
+nc-violent-manslaughter,nc-violent,Manslaughter,200,notconv
+nc-violent-kidnapping,nc-violent,Kidnapping,200,notconv
+nc-violent-rape,nc-violent,Rape,60,notconv
+nc-violent-othersexualassault,nc-violent,Other sexual assault,600,notconv
+nc-violent-robbery,nc-violent,Robbery,2500,notconv
+nc-violent-assault,nc-violent,Assault,4900,notconv
+nc-violent-otherviolent,nc-violent,Other violent,1600,notconv
+nc-property,nc,Property,,notconv
+nc-property-burglary,nc-property,Burglary,1600,notconv
+nc-property-cartheft,nc-property,Car theft,900,notconv
+nc-property-fraud,nc-property,Fraud,6800,notconv
+nc-property-arson,nc-property,Arson,500,notconv
+nc-property-larcenytheft,nc-property,Larceny/theft,4900,notconv
+nc-property-stolenproperty,nc-property,Stolen property,900,notconv
+nc-property-otherproperty,nc-property,Other property,600,notconv
+nc-drug,nc,Drug,,notconv
+nc-drug-drugtrafficking,nc-drug,Drug trafficking,4200,notconv
+nc-drug-drugpossession,nc-drug,Drug possession,8800,notconv
+nc-drug-otherdrug,nc-drug,Other drug,2300,notconv
+nc-publicorder,nc,Public order,,notconv
+nc-publicorder-paroleprobationviolations,nc-publicorder,Parole/probation violations,900,notconv
+nc-publicorder-weapons,nc-publicorder,Weapons,500,notconv
+nc-publicorder-otherpublicorder,nc-publicorder,Other public order,500,notconv
+nc-publicorder-obstructionofjustice,nc-publicorder,Obstruction of justice,2300,notconv
+nc-publicorder-traffic,nc-publicorder,Traffic,1000,notconv
+nc-publicorder-drivingwhileintoxicated,nc-publicorder,Driving while intoxicated,1200,notconv
+nc-publicorder-drunkennessmorals,nc-publicorder,Drunkenness/morals,1500,notconv
+nc-publicorder-immigration,nc-publicorder,Immigration,200,notconv
+nc-other,nc,Other,300,notconv
+cv-violent,cv,Violent,,conv
+cv-violent-murder,cv-violent,Murder,130,conv
+cv-violent-manslaughter,cv-violent,Manslaughter,100,conv
+cv-violent-kidnapping,cv-violent,Kidnapping,30,conv
+cv-violent-rape,cv-violent,Rape,0,conv
+cv-violent-othersexualassault,cv-violent,Other sexual assault,300,conv
+cv-violent-robbery,cv-violent,Robbery,800,conv
+cv-violent-assault,cv-violent,Assault,2600,conv
+cv-violent-otherviolent,cv-violent,Other violent,800,conv
+cv-property,cv,Property,,conv
+cv-property-burglary,cv-property,Burglary,800,conv
+cv-property-arson,cv-property,Arson,140,conv
+cv-property-cartheft,cv-property,Car theft,400,conv
+cv-property-fraud,cv-property,Fraud,4600,conv
+cv-property-larcenytheft,cv-property,Larceny/theft,3800,conv
+cv-property-stolenproperty,cv-property,Stolen property,300,conv
+cv-property-otherproperty,cv-property,Other property,700,conv
+cv-drug,cv,Drug,,conv
+cv-drug-drugtrafficking,cv-drug,Drug trafficking,2700,conv
+cv-drug-drugpossession,cv-drug,Drug possession,5300,conv
+cv-drug-otherdrug,cv-drug,Other drug,1100,conv
+cv-publicorder,cv,Public order,,conv
+cv-publicorder-paroleprobationviolations,cv-publicorder,Parole/probation violations,1200,conv
+cv-publicorder-weapons,cv-publicorder,Weapons,130,conv
+cv-publicorder-otherpublicorder,cv-publicorder,Other public order,500,conv
+cv-publicorder-obstructionofjustice,cv-publicorder,Obstruction of justice,1200,conv
+cv-publicorder-traffic,cv-publicorder,Traffic,1100,conv
+cv-publicorder-drivingwhileintoxicated,cv-publicorder,Driving while intoxicated,2900,conv
+cv-publicorder-drunkennessmorals,cv-publicorder,Drunkenness/morals,1300,conv
+cv-publicorder-immigration,cv-publicorder,Immigration,0,conv
+cv-other,cv,Other,200,conv
+other-state,other,Held for state prisons,5500,agency
+other-federal,other,Held for U.S. Marshals and federal prisons,2800,agency
+other-ice,other,Held for immigration (ICE),100,agency
+other-bia,other,Held for tribal governments (BIA),90,agency
